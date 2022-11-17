@@ -1,0 +1,125 @@
+@import './base.css';
+
+#app {
+  max-width: 650px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0rem;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #e6ecf1;
+  font-family: "Roboto", sans-serif;
+}
+
+.app-phone {
+  background-color: white;
+  height: 100%;
+  width: 650px;
+  overflow: hidden;
+}
+
+.card-img-top {
+  max-width: 40%;
+}
+
+.card-body {
+  height: 530px;
+  overflow-y: scroll;
+}
+
+.cancel-cta,
+  .next-cta {
+  position: absolute;
+  top: 5px;
+  font-size: 1em;
+  color: #209cee;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.cancel-cta {
+  left: 15px;
+}
+
+.next-cta {
+  right: 15px;
+}
+
+.phone-body {
+  background-color: white;
+  height: 620px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.preview-image {
+  max-height: 75%;
+}
+
+.grid-img {
+  width: 190px;
+  height: 190px;
+}
+
+.phone-footer {
+  height: 35px;
+  width: 650px;
+  position: absolute;
+  position: -webkit-sticky;
+  bottom: 0;
+  background: #fafafa;
+  border-top: 1px solid #eeeeee;
+  z-index: 99;
+}
+
+.home-cta {
+  position: absolute;
+  left: 10px;
+  top: 3px;
+  cursor: pointer;
+  max-width: 1.25em;
+}
+
+.upload-cta {
+  position: absolute;
+  right: 10px;
+  top: 2px;
+  cursor: pointer;
+}
+
+input[name="file"] {
+  visibility: hidden;
+}
+
+label {
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  /* #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  } */
+}
+
+@media (max-width: 767px) {
+  .app-phone {
+    height: 100% !important;
+  }
+}
