@@ -7,34 +7,19 @@
           >Cancel</a
         >
         <a class="next-cta" v-if="step === 2" @click="submitFile"> Post </a>
-        <!-- <a class="next-cta" v-if="step === 3" @click="sharePost">Share</a> -->
       </div>
-      <div class="card-body d-flex flex-wrap mb-5">
-        <div class="text-center" v-if="step === 2">
-          <img
-            class="img-fluid preview-image"
-            v-bind:src="imagePreview"
-            v-show="showPreview"
-          />
-        </div>
-        <div
-          v-if="step === 1"
-          class="mx-1 my-1"
-          v-for="inf in info"
-          :key="inf.pk"
-        >
-          <img
-            class="img-fluid grid-img"
-            :src="domain + inf.image"
-            @error="hideImg"
-          />
-          <!-- {{ inf.image }} -->
-        </div>
+      <div class="text-center mb-5" v-if="step === 2">
+        <img
+          class="img-fluid preview-image"
+          v-bind:src="imagePreview"
+          v-show="showPreview"
+        />
       </div>
+      <RouterView v-if="step === 1" />
       <div class="phone-footer">
-        <div class="home-cta" @click="goToHome">
+        <RouterLink to="/" class="home-cta">
           <img class="img-fluid" src="./components/icons/cat-solid.png" />
-        </div>
+        </RouterLink>
         <div class="upload-cta">
           <input
             type="file"
@@ -55,18 +40,17 @@
 
 <script>
 import axios from "axios";
+import ProfileFeed from "./components/ProfileFeed.vue";
 
 export default {
   name: "App",
   data() {
     return {
       step: 1,
-      info: [],
       file: "",
       showPreview: false,
       imagePreview: "",
       name: "",
-      domain: "http://catstagram.lofty.codes/media/",
     };
   },
   methods: {
@@ -123,10 +107,6 @@ export default {
       console.log(this.file);
       console.log(this.step);
     },
-    goToHome() {
-      this.file = "";
-      this.step = 1;
-    },
     sharePost() {
       const post = {
         postImage: this.image,
@@ -137,19 +117,14 @@ export default {
       this.goToHome();
       console.log(this.caption);
     },
-    hideImg(event) {
-      event.target.parentElement.style.display = "none";
+    goToHome() {
+      this.file = "";
+      this.step = 1;
     },
   },
-  mounted() {
-    // let gridImage = this.image;
-    let catImageResponse = axios
-      .get("http://catstagram.lofty.codes/api/posts/")
-      .then((response) => (this.info = response.data));
-    console.log(catImageResponse);
-    // console.log(gridImage);
+  components: {
+    "profile-feed": ProfileFeed,
   },
-  components: {},
 };
 </script>
 
