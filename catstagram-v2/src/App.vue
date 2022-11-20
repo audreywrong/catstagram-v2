@@ -20,6 +20,13 @@
         <RouterLink to="/" class="home-cta">
           <img class="img-fluid" src="./components/icons/cat-solid.png" />
         </RouterLink>
+        <RouterLink to="/createuser">
+          <img
+            class="img-fluid"
+            style="width: 20px; margin-left: 40px"
+            src="./components/icons/cat-solid.png"
+          />
+        </RouterLink>
         <div class="upload-cta">
           <input
             type="file"
