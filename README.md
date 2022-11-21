@@ -19,6 +19,7 @@ Highlighted features:
 ## Project Setup
 
 npm install
+
 npm run dev
 
 <!-- ### Run Unit Tests with [Vitest](https://vitest.dev/)
