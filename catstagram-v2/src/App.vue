@@ -3,10 +3,20 @@
     <div class="app-phone card">
       <div class="text-center mt-2">
         <img class="card-img-top" src="./components/icons/Catstagram.png" />
+        <div class="username" v-for="(user, index) in users">
+          <p v-if="step === 1 && index == users.length - 1">
+            User: <span>{{ user.full_name }}</span>
+          </p>
+        </div>
         <a class="cancel-cta" v-if="step === 2 || step === 3" @click="goToHome"
           >Cancel</a
         >
-        <a class="next-cta" v-if="step === 2" @click="submitFile"> Post </a>
+        <a class="next-cta" v-if="step === 2" @click="submitFile"> Post </a
+        ><RouterLink to="/createuser"
+          ><a class="create-user-cta" v-if="step === 1">
+            Create a User
+          </a></RouterLink
+        >
       </div>
       <div class="text-center mb-5" v-if="step === 2">
         <img
@@ -19,13 +29,6 @@
       <div class="phone-footer">
         <RouterLink to="/" class="home-cta">
           <img class="img-fluid" src="./components/icons/cat-solid.png" />
-        </RouterLink>
-        <RouterLink to="/createuser">
-          <img
-            class="img-fluid"
-            style="width: 20px; margin-left: 40px"
-            src="./components/icons/cat-solid.png"
-          />
         </RouterLink>
         <div class="upload-cta">
           <input
@@ -47,10 +50,13 @@
 
 <script>
 import axios from "axios";
-import ProfileFeed from "./components/ProfileFeed.vue";
 
 export default {
   name: "App",
+  props: {
+    full_name: Object,
+    email: Object,
+  },
   data() {
     return {
       step: 1,
@@ -58,7 +64,24 @@ export default {
       showPreview: false,
       imagePreview: "",
       name: "",
+      users: [],
     };
+  },
+  mounted() {
+    let userResponse = axios
+      .get("http://catstagram.lofty.codes/api/users/")
+      .then((response) => (this.users = response.data));
+    console.log(userResponse);
+    console.log(this.users);
+  },
+  computed: {
+    // userLastCount() {
+    //   var lastUser = this.users[this.users.length - 1];
+    //   console.log(lastUser);
+    //   var lastUserString = JSON.stringify(lastUser);
+    //   console.log(lastUserString);
+    //   return lastUser.full_name;
+    // },
   },
   methods: {
     submitFile() {
@@ -77,11 +100,11 @@ export default {
           },
         })
         .then(function () {
-          console.log("SUCCESS!!");
+          console.log("Successfully posted feed iamge!");
           window.location.reload();
         })
         .catch(function () {
-          console.log("FAILURE!!");
+          console.log("Failed to post a feed iamge!");
         });
     },
     /* Handles a change on the file upload*/
@@ -102,15 +125,9 @@ export default {
 
       if (this.file) {
         if (/\.(jpe?g|png|gif)$/i.test(this.file.name)) {
-          /*
-          Fire the readAsDataURL method which will read the file in and
-          upon completion fire a 'load' event which we will listen to and
-          display the image in the preview.
-        */
           reader.readAsDataURL(this.file);
         }
       }
-
       console.log(this.file);
       console.log(this.step);
     },
@@ -128,9 +145,6 @@ export default {
       this.file = "";
       this.step = 1;
     },
-  },
-  components: {
-    "profile-feed": ProfileFeed,
   },
 };
 </script>

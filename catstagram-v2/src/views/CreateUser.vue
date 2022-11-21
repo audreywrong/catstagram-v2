@@ -75,6 +75,7 @@ export default {
         )
         .then(function () {
           console.log("Successfully created a user!");
+          window.location.reload();
         })
         .catch(function () {
           console.log("Failed to create a user!");

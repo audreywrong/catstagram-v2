@@ -49,6 +49,30 @@
   right: 15px;
 }
 
+.create-user-cta {
+  position: absolute;
+  top: 5px;
+  font-size: 1em;
+  color: #209cee;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  right: -150px;
+}
+
+.username {
+  position: absolute;
+  top: 35px;
+  color: #000000;
+  font-weight: bold;
+  left: 20px;
+  text-transform: uppercase;
+}
+
+span {
+  font-weight: bold;
+}
+
 .phone-body {
   background-color: white;
   height: 620px;

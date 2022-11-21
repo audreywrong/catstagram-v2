@@ -64,11 +64,11 @@ export default {
             }
           )
           .then(function () {
-            console.log("SUCCESS!!");
+            console.log("Successfully posted comment!");
             window.location.reload();
           })
           .catch(function () {
-            console.log("FAILURE!!");
+            console.log("Failed to post comment!");
           });
 
         this.reply = "";
