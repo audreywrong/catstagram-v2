@@ -18,6 +18,10 @@ Highlighted features:
 
 ## Project Setup
 
+\*\*\* IMPORTANT TO NOTE: This version of Vite usestop-level await. This will only work in Node v14+.
+
+cd catstagram-v2
+
 npm install
 
 npm run dev
